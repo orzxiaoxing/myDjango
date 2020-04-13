@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}注册页{% endblock %}
+{% block css %}
+    <link href="{% static 'css/login.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/register.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <form class='form-login' action="/register/" method="post">
+
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+
+                {% csrf_token %}
+                <h2 class="text-center">欢迎注册</h2>
+                <div class="form-group">
+                    <label for="id_reg_username">用户名：</label>
+                    <input type="text" name='reg_username' class="form-control" id="id_reg_username"
+                           placeholder="请输入用户名" autofocus required>
+                </div>
+                <div class="form-group">
+                    <label for="id_reg_password">密码：</label>
+                    <input type="password" name='reg_password' class="form-control" id="id_reg_password"
+                           placeholder="请输入密码" required>
+                </div>
+                <div class="form-group">
+                    <label for="id_reg_confirm_password">再次输入密码：</label>
+                    <input type="password" name='reg_confirm_password' class="form-control" id="id_reg_confirm_password"
+                           placeholder="请确认密码" required>
+                </div>
+                <div class="form-group">
+                    <label for="id_reg_email">邮箱：</label>
+                    <input type="text" name='reg_email' class="form-control" id="id_reg_email" placeholder="请输入邮箱"
+                           autofocus required>
+                </div>
+                <div class="form-group">
+                    <label for="id_username">性别：</label></br>
+                    <select class="selectpicker" data-style="btn-primary" id="select" name="reg_sex">
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                    </select>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block register-btn btn-top" id="button" type="submit">
+                    注册
+                </button>
+            </form>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}
